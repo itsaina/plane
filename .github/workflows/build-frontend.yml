@@ -1,0 +1,41 @@
+name: Build & Push Plane Frontend
+
+on:
+  push:
+    branches: [gantt-year-views]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout custom frontend code
+        uses: actions/checkout@v4
+        with:
+          repository: itsaina/plane
+          ref: gantt-year-views
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./web/Dockerfile.web
+          push: true
+          tags: ghcr.io/itsaina/plane-frontend:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
