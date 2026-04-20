@@ -34,7 +34,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: ./web/Dockerfile.web
+          file: ./apps/web/Dockerfile.web
           push: true
           tags: ghcr.io/itsaina/plane-frontend:latest
           cache-from: type=gha
