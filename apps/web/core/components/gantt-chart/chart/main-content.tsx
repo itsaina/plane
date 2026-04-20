@@ -18,7 +18,14 @@ import type {
 import { cn, getDate } from "@plane/utils";
 // components
 import { MultipleSelectGroup } from "@/components/core/multiple-select";
-import { GanttChartSidebar, MonthChartView, QuarterChartView, WeekChartView } from "@/components/gantt-chart";
+import {
+  GanttChartSidebar,
+  MonthChartView,
+  QuarterChartView,
+  WeekChartView,
+  YearChartView,
+  Year5ChartView,
+} from "@/components/gantt-chart";
 // helpers
 // hooks
 import { useTimeLineChartStore } from "@/hooks/use-timeline-chart";
@@ -156,6 +163,8 @@ export const GanttChartMainContent = observer(function GanttChartMainContent(pro
     week: WeekChartView,
     month: MonthChartView,
     quarter: QuarterChartView,
+    year: YearChartView,
+    year_5: Year5ChartView,
   };
 
   if (!currentView) return null;
