@@ -20,7 +20,7 @@ import { useTimeLineChartStore } from "@/hooks/use-timeline-chart";
 import { SIDEBAR_WIDTH } from "../constants";
 import { currentViewDataWithView } from "../data";
 import type { IMonthBlock, IMonthView, IWeekBlock } from "../views";
-import { getNumberOfDaysBetweenTwoDates, monthView, quarterView, weekView } from "../views";
+import { getNumberOfDaysBetweenTwoDates, monthView, quarterView, weekView, yearView, year5View } from "../views";
 
 type ChartViewRootProps = {
   border: boolean;
@@ -51,6 +51,8 @@ const timelineViewHelpers = {
   week: weekView,
   month: monthView,
   quarter: quarterView,
+  year: yearView,
+  year_5: year5View,
 };
 
 export const ChartViewRoot = observer(function ChartViewRoot(props: ChartViewRootProps) {
